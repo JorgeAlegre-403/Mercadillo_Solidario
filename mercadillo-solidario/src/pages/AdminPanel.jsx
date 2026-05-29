@@ -119,7 +119,7 @@ export const AdminPanel = () => {
           </Button>
         </div>
 
-        {/* Formulario */}
+        
         {showForm && (
           <Card className="mb-8">
             <CardTitle>
@@ -206,7 +206,7 @@ export const AdminPanel = () => {
           </Card>
         )}
 
-        {/* Lista de productos */}
+        
         {loading && !showForm ? (
           <div className="text-center py-8">Cargando...</div>
         ) : (

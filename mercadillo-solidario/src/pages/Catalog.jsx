@@ -54,7 +54,7 @@ export const Catalog = () => {
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-7xl mx-auto px-4">
-        {/* Header */}
+        
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-gray-900 mb-2">
             Mercadillo Solidario
@@ -64,7 +64,7 @@ export const Catalog = () => {
           </p>
         </div>
 
-        {/* Buscador */}
+        
         <div className="mb-6">
           <input
             type="text"
@@ -75,7 +75,7 @@ export const Catalog = () => {
           />
         </div>
 
-        {/* Filtros */}
+        
         <div className="mb-6 flex gap-2 flex-wrap">
           {CATEGORIES.map(cat => (
             <Button
@@ -88,7 +88,7 @@ export const Catalog = () => {
           ))}
         </div>
 
-        {/* Productos */}
+        
         {loading ? (
           <div className="text-center py-8">Cargando...</div>
         ) : filtrados.length === 0 ? (
