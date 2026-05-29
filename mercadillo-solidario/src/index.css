@@ -1,5 +1,5 @@
-@tailwind base;
-@tailwind components;
+@import "tailwindcss";
+@import "tailwindcss/preflight";
 @tailwind utilities;
 
 * {
@@ -20,17 +20,27 @@ body {
 /* Custom utilities */
 @layer components {
   .container-max {
-    @apply max-w-7xl mx-auto px-4;
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
-}
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
-}
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+  .btn-primary {
+    @apply bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition;
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    border-radius: 4px;
+    color: var(--text-h);
+  }
+
+  code {
+    font-size: 15px;
+    line-height: 135%;
+    padding: 4px 8px;
+    background: var(--code-bg);
+  }
 }
