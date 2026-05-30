@@ -72,7 +72,14 @@ export const ProductDetail = () => {
     return (
       <>
         <Navbar />
-        <div className="flex items-center justify-center min-h-screen">
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          minHeight: '100vh',
+          color: 'var(--slate-light)',
+          fontSize: '1.1rem',
+        }}>
           Cargando...
         </div>
       </>
@@ -83,8 +90,15 @@ export const ProductDetail = () => {
     return (
       <>
         <Navbar />
-        <div className="flex items-center justify-center min-h-screen">
-          Producto no encontrado
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          minHeight: '100vh',
+          color: 'var(--slate-light)',
+          fontSize: '1.1rem',
+        }}>
+          📭 Producto no encontrado
         </div>
       </>
     )
@@ -93,102 +107,275 @@ export const ProductDetail = () => {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-gray-50 py-8">
-        <div className="max-w-4xl mx-auto px-4">
-          <Button onClick={() => navigate('/')} variant="secondary" className="mb-6">
+      <div style={{
+        minHeight: '100vh',
+        backgroundColor: 'var(--cream)',
+        padding: '2rem 1.5rem',
+      }}>
+        <div style={{
+          maxWidth: '1000px',
+          margin: '0 auto',
+        }}>
+          <Button onClick={() => navigate('/')} variant="secondary" style={{ marginBottom: '2rem' }}>
             ← Volver al Catálogo
           </Button>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Imagen */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            gap: '2rem',
+          }}>
             <Card>
               <CardImage src={producto.imagen_url} alt={producto.nombre} />
             </Card>
 
-            {/* Detalles */}
             <Card>
-              <CardTitle className="mb-4">{producto.nombre}</CardTitle>
+              <h1 style={{
+                fontSize: '1.8rem',
+                fontFamily: 'var(--font-display)',
+                fontWeight: 800,
+                color: 'var(--slate)',
+                marginBottom: '1.5rem',
+                letterSpacing: '-0.02em',
+              }}>
+                {producto.nombre}
+              </h1>
 
-              <div className="text-left space-y-4">
+              <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '1.5rem',
+              }}>
                 <div>
-                  <label className="text-sm text-gray-500">Categoría</label>
-                  <p className="text-lg font-semibold">{producto.categoria}</p>
-                </div>
-
-                <div>
-                  <label className="text-sm text-gray-500">Descripción</label>
-                  <p className="text-gray-700">{producto.descripcion}</p>
-                </div>
-
-                <div>
-                  <label className="text-sm text-gray-500">Precio Sugerido</label>
-                  <p className="text-3xl font-bold text-blue-600">${producto.precio}</p>
-                </div>
-
-                <div>
-                  <label className="text-sm text-gray-500">Estado</label>
-                  <p className={`text-lg font-semibold ${
-                    producto.estado === 'Disponible' ? 'text-green-600' : 'text-red-600'
-                  }`}>
-                    {producto.estado}
+                  <label style={{
+                    fontSize: '0.85rem',
+                    color: 'var(--slate-light)',
+                    fontWeight: 600,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.05em',
+                    marginBottom: '0.5rem',
+                    display: 'block',
+                  }}>
+                    Categoría
+                  </label>
+                  <p style={{
+                    fontSize: '1.1rem',
+                    fontWeight: 600,
+                    color: 'var(--slate)',
+                  }}>
+                    {producto.categoria}
                   </p>
+                </div>
+
+                <div>
+                  <label style={{
+                    fontSize: '0.85rem',
+                    color: 'var(--slate-light)',
+                    fontWeight: 600,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.05em',
+                    marginBottom: '0.5rem',
+                    display: 'block',
+                  }}>
+                    Descripción
+                  </label>
+                  <p style={{
+                    color: 'var(--slate-mid)',
+                    lineHeight: 1.7,
+                    fontSize: '1rem',
+                  }}>
+                    {producto.descripcion}
+                  </p>
+                </div>
+
+                <div style={{
+                  padding: '1.5rem',
+                  backgroundColor: 'var(--amber-light)',
+                  border: '2.5px solid var(--amber)',
+                  borderRadius: 'var(--radius)',
+                  boxShadow: '3px 3px 0px var(--amber-dark)',
+                }}>
+                  <label style={{
+                    fontSize: '0.85rem',
+                    color: 'var(--amber-dark)',
+                    fontWeight: 600,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.05em',
+                    display: 'block',
+                    marginBottom: '0.5rem',
+                  }}>
+                    Precio Sugerido
+                  </label>
+                  <p style={{
+                    fontSize: '2.2rem',
+                    fontWeight: 900,
+                    color: 'var(--amber-dark)',
+                    fontFamily: 'var(--font-display)',
+                  }}>
+                    {producto.precio.toFixed(2)}€
+                  </p>
+                </div>
+
+                <div>
+                  <label style={{
+                    fontSize: '0.85rem',
+                    color: 'var(--slate-light)',
+                    fontWeight: 600,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.05em',
+                    marginBottom: '0.5rem',
+                    display: 'block',
+                  }}>
+                    Estado
+                  </label>
+                  <div style={{
+                    display: 'inline-block',
+                    padding: '6px 14px',
+                    borderRadius: '4px',
+                    fontWeight: 700,
+                    fontSize: '1rem',
+                    backgroundColor: producto.estado === 'Disponible' ? 'var(--sage-light)' : 'var(--terracotta-light)',
+                    color: producto.estado === 'Disponible' ? 'var(--sage)' : 'var(--terracotta)',
+                    border: '2px solid',
+                    borderColor: producto.estado === 'Disponible' ? 'var(--sage)' : 'var(--terracotta)',
+                  }}>
+                    {producto.estado === 'Disponible' ? 'Disponible' : producto.estado}
+                  </div>
                 </div>
 
                 {producto.estado === 'Disponible' && (
                   <Button
                     onClick={() => setShowReservationForm(!showReservationForm)}
-                    className="w-full"
+                    style={{ width: '100%', marginTop: '0.5rem' }}
                   >
-                    {showReservationForm ? 'Cancelar' : 'Reservar'}
+                    {showReservationForm ? 'Cancelar Reserva' : 'Reservar Este Producto'}
                   </Button>
                 )}
 
                 {success && (
-                  <div className="p-4 bg-green-100 text-green-800 rounded">
+                  <div style={{
+                    padding: '1rem 1.5rem',
+                    backgroundColor: 'var(--sage-light)',
+                    border: '2.5px solid var(--sage)',
+                    borderRadius: 'var(--radius)',
+                    color: 'var(--sage)',
+                    fontWeight: 600,
+                    textAlign: 'center',
+                  }}>
                     ¡Reserva enviada exitosamente!
                   </div>
                 )}
               </div>
 
-              {/* Formulario de Reserva */}
               {showReservationForm && producto.estado === 'Disponible' && (
-                <form onSubmit={handleReservation} className="mt-6 pt-6 border-t space-y-4">
-                  <h3 className="font-bold text-lg">Formulario de Reserva</h3>
+                <form onSubmit={handleReservation} style={{
+                  marginTop: '2rem',
+                  paddingTop: '2rem',
+                  borderTop: '2.5px solid var(--slate)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '1rem',
+                }}>
+                  <h3 style={{
+                    fontWeight: 700,
+                    fontSize: '1.2rem',
+                    color: 'var(--slate)',
+                    fontFamily: 'var(--font-display)',
+                    marginBottom: '0.5rem',
+                  }}>
+                    Formulario de Reserva
+                  </h3>
 
                   <div>
-                    <label className="block text-sm font-medium mb-1">Tu Nombre</label>
+                    <label style={{
+                      display: 'block',
+                      fontSize: '0.9rem',
+                      fontWeight: 600,
+                      color: 'var(--slate)',
+                      marginBottom: '0.5rem',
+                    }}>
+                      Tu Nombre
+                    </label>
                     <input
                       type="text"
                       value={formData.nombre}
                       onChange={(e) => setFormData({...formData, nombre: e.target.value})}
-                      className="w-full px-3 py-2 border border-gray-300 rounded"
+                      style={{
+                        width: '100%',
+                        padding: '10px 12px',
+                        border: '2.5px solid var(--slate)',
+                        borderRadius: 'var(--radius)',
+                        fontSize: '1rem',
+                        fontFamily: 'var(--font-body)',
+                        backgroundColor: 'var(--warm-white)',
+                        color: 'var(--slate)',
+                        boxShadow: '2px 2px 0px var(--slate)',
+                      }}
                       required
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium mb-1">Tu Email</label>
+                    <label style={{
+                      display: 'block',
+                      fontSize: '0.9rem',
+                      fontWeight: 600,
+                      color: 'var(--slate)',
+                      marginBottom: '0.5rem',
+                    }}>
+                      Tu Email
+                    </label>
                     <input
                       type="email"
                       value={formData.email}
                       onChange={(e) => setFormData({...formData, email: e.target.value})}
-                      className="w-full px-3 py-2 border border-gray-300 rounded"
+                      style={{
+                        width: '100%',
+                        padding: '10px 12px',
+                        border: '2.5px solid var(--slate)',
+                        borderRadius: 'var(--radius)',
+                        fontSize: '1rem',
+                        fontFamily: 'var(--font-body)',
+                        backgroundColor: 'var(--warm-white)',
+                        color: 'var(--slate)',
+                        boxShadow: '2px 2px 0px var(--slate)',
+                      }}
                       required
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium mb-1">Mensaje (Opcional)</label>
+                    <label style={{
+                      display: 'block',
+                      fontSize: '0.9rem',
+                      fontWeight: 600,
+                      color: 'var(--slate)',
+                      marginBottom: '0.5rem',
+                    }}>
+                      Mensaje (Opcional)
+                    </label>
                     <textarea
                       value={formData.mensaje}
                       onChange={(e) => setFormData({...formData, mensaje: e.target.value})}
-                      className="w-full px-3 py-2 border border-gray-300 rounded"
+                      placeholder="Cuéntanos por qué estás interesado en este producto..."
+                      style={{
+                        width: '100%',
+                        padding: '10px 12px',
+                        border: '2.5px solid var(--slate)',
+                        borderRadius: 'var(--radius)',
+                        fontSize: '1rem',
+                        fontFamily: 'var(--font-body)',
+                        backgroundColor: 'var(--warm-white)',
+                        color: 'var(--slate)',
+                        boxShadow: '2px 2px 0px var(--slate)',
+                        minHeight: '100px',
+                        resize: 'vertical',
+                      }}
                       rows="3"
-                      placeholder="Cuéntanos por qué estás interesado..."
                     />
                   </div>
 
-                  <Button type="submit" disabled={submitting} className="w-full">
+                  <Button type="submit" disabled={submitting} style={{ width: '100%', marginTop: '0.5rem' }}>
                     {submitting ? 'Enviando...' : 'Enviar Reserva'}
                   </Button>
                 </form>

@@ -52,31 +52,67 @@ export const Catalog = () => {
   }, [selectedCategory, searchTerm, productos])
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-7xl mx-auto px-4">
+    <div style={{
+      minHeight: '100vh',
+      backgroundColor: 'var(--cream)',
+      padding: '3rem 1.5rem',
+    }}>
+      <div style={{
+        maxWidth: '1280px',
+        margin: '0 auto',
+      }}>
         
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">
+        <div style={{ marginBottom: '2rem' }}>
+          <h1 style={{
+            fontSize: '2.5rem',
+            fontFamily: 'var(--font-display)',
+            fontWeight: 800,
+            color: 'var(--slate)',
+            marginBottom: '0.5rem',
+            letterSpacing: '-0.02em',
+          }}>
             Mercadillo Solidario
           </h1>
-          <p className="text-gray-600">
+          <p style={{
+            color: 'var(--slate-light)',
+            fontSize: '1.1rem',
+          }}>
             Productos de segunda mano con fines benéficos
           </p>
         </div>
 
         
-        <div className="mb-6">
+        <div style={{ marginBottom: '1.5rem' }}>
           <input
             type="text"
             placeholder="Buscar productos..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+            style={{
+              width: '100%',
+              padding: '12px 16px',
+              border: '2.5px solid var(--slate)',
+              borderRadius: 'var(--radius)',
+              fontSize: '1rem',
+              fontFamily: 'var(--font-body)',
+              backgroundColor: 'var(--warm-white)',
+              color: 'var(--slate)',
+              transition: 'all 0.2s ease',
+              boxShadow: '2px 2px 0px var(--slate)',
+            }}
+            onFocus={(e) => {
+              e.target.style.boxShadow = '4px 4px 0px var(--slate)';
+              e.target.style.transform = 'translateY(-2px)';
+            }}
+            onBlur={(e) => {
+              e.target.style.boxShadow = '2px 2px 0px var(--slate)';
+              e.target.style.transform = 'translateY(0)';
+            }}
           />
         </div>
 
         
-        <div className="mb-6 flex gap-2 flex-wrap">
+        <div style={{ marginBottom: '2rem', display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
           {CATEGORIES.map(cat => (
             <Button
               key={cat}
@@ -90,31 +126,65 @@ export const Catalog = () => {
 
         
         {loading ? (
-          <div className="text-center py-8">Cargando...</div>
+          <div style={{
+            textAlign: 'center',
+            padding: '2rem',
+            fontSize: '1.1rem',
+            color: 'var(--slate-light)',
+          }}>
+            Cargando productos...
+          </div>
         ) : filtrados.length === 0 ? (
-          <div className="text-center py-8 text-gray-600">
-            No hay productos disponibles
+          <div style={{
+            textAlign: 'center',
+            padding: '3rem 2rem',
+            backgroundColor: 'var(--warm-white)',
+            borderRadius: 'var(--radius)',
+            border: '2.5px dashed var(--slate)',
+            color: 'var(--slate-light)',
+          }}>
+            <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>No hay productos disponibles en esta categoría</div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+            gap: '1.5rem',
+          }}>
             {filtrados.map(producto => (
-              <Card key={producto.id} className="hover:shadow-lg transition">
+              <Card key={producto.id}>
                 <CardImage src={producto.imagen_url} alt={producto.nombre} />
-                <div className="mt-4">
-                  <CardTitle>{producto.nombre}</CardTitle>
-                  <CardContent>
-                    <p className="text-sm text-gray-600 mb-2">
-                      {producto.descripcion}
-                    </p>
-                    <p className="text-lg font-bold text-blue-600 mb-3">
-                      ${producto.precio}
-                    </p>
-                    <Link to={`/producto/${producto.id}`}>
-                      <Button className="w-full">
-                        Ver Detalle
-                      </Button>
-                    </Link>
-                  </CardContent>
+                <div style={{ marginTop: '1rem' }}>
+                  <h3 style={{
+                    fontSize: '1.1rem',
+                    fontWeight: 600,
+                    color: 'var(--slate)',
+                    marginBottom: '0.5rem',
+                    fontFamily: 'var(--font-display)',
+                  }}>
+                    {producto.nombre}
+                  </h3>
+                  <p style={{
+                    fontSize: '0.9rem',
+                    color: 'var(--slate-light)',
+                    marginBottom: '0.75rem',
+                    lineHeight: 1.5,
+                  }}>
+                    {producto.descripcion?.substring(0, 80)}...
+                  </p>
+                  <p style={{
+                    fontSize: '1.3rem',
+                    fontWeight: 800,
+                    color: 'var(--amber)',
+                    marginBottom: '1rem',
+                  }}>
+                    {producto.precio.toFixed(2)}€
+                  </p>
+                  <Link to={`/producto/${producto.id}`} style={{ textDecoration: 'none' }}>
+                    <Button style={{ width: '100%' }}>
+                      Ver Detalle
+                    </Button>
+                  </Link>
                 </div>
               </Card>
             ))}
