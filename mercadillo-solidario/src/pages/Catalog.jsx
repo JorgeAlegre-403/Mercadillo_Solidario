@@ -181,7 +181,7 @@ export const Catalog = () => {
                     {producto.precio.toFixed(2)}€
                   </p>
                   <Link to={`/producto/${producto.id}`} style={{ textDecoration: 'none' }}>
-                    <Button style={{ width: '100%' }}>
+                    <Button style={{ width: '100%', border: '2px solid black', borderRadius: 'var(--radius)' }} >
                       Ver Detalle
                     </Button>
                   </Link>

@@ -3,7 +3,6 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { supabase } from '../lib/supabaseClient'
 import { Card, CardImage, CardTitle, CardContent } from '../components/ui/Card'
 import { Button } from '../components/ui/Button'
-import { Navbar } from '../components/Navbar'
 
 export const ProductDetail = () => {
   const { id } = useParams()
@@ -70,44 +69,36 @@ export const ProductDetail = () => {
 
   if (loading) {
     return (
-      <>
-        <Navbar />
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          minHeight: '100vh',
-          color: 'var(--slate-light)',
-          fontSize: '1.1rem',
-        }}>
-          Cargando...
-        </div>
-      </>
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        minHeight: '100vh',
+        color: 'var(--slate-light)',
+        fontSize: '1.1rem',
+      }}>
+        Cargando...
+      </div>
     )
   }
 
   if (!producto) {
     return (
-      <>
-        <Navbar />
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          minHeight: '100vh',
-          color: 'var(--slate-light)',
-          fontSize: '1.1rem',
-        }}>
-          📭 Producto no encontrado
-        </div>
-      </>
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        minHeight: '100vh',
+        color: 'var(--slate-light)',
+        fontSize: '1.1rem',
+      }}>
+        Producto no encontrado
+      </div>
     )
   }
 
   return (
-    <>
-      <Navbar />
-      <div style={{
+    <div style={{
         minHeight: '100vh',
         backgroundColor: 'var(--cream)',
         padding: '2rem 1.5rem',
@@ -246,7 +237,7 @@ export const ProductDetail = () => {
                 {producto.estado === 'Disponible' && (
                   <Button
                     onClick={() => setShowReservationForm(!showReservationForm)}
-                    style={{ width: '100%', marginTop: '0.5rem' }}
+                    style={{ width: '100%', marginTop: '0.5rem',border: '2px solid black', borderRadius: 'var(--radius)' }}
                   >
                     {showReservationForm ? 'Cancelar Reserva' : 'Reservar Este Producto'}
                   </Button>
@@ -384,6 +375,5 @@ export const ProductDetail = () => {
           </div>
         </div>
       </div>
-    </>
   )
 }
