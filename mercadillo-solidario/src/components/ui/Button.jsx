@@ -34,14 +34,15 @@ export const Button = ({
     primary: {
       background: disabled ? '#ccc' : 'var(--amber)',
       color: 'var(--slate)',
-      boxShadow: disabled ? 'none' : 'var(--shadow-offset)',
+      boxShadow: disabled ? 'none' : '4px 4px 0px var(--amber-dark)',
+      borderColor: disabled ? '#aaa' : 'var(--amber-dark)',
     },
     secondary: {
-      background: 'transparent',
-      color: 'var(--slate)',
-      border: '2.5px solid var(--slate)',
-      boxShadow: 'none',
-    },
+  background: 'var(--cream)',           // Fondo claro, no naranja
+  color: 'var(--slate)',
+  border: '2.5px solid #000',
+  boxShadow: 'none',                    // Sin sombra cuando no está activo
+},
     danger: {
       background: disabled ? '#ccc' : 'var(--terracotta)',
       color: 'white',
