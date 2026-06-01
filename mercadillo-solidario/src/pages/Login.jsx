@@ -1,9 +1,11 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { supabase } from '../lib/supabaseClient'
 import { Button } from '../components/ui/Button'
 import { Card, CardTitle, CardContent } from '../components/ui/Card'
 
 export const Login = () => {
+  const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
@@ -24,6 +26,9 @@ export const Login = () => {
       
       if (isSignUp) {
         setError('¡Registro exitoso! Revisa tu email para confirmar.')
+      } else {
+        // Redirigir al panel de admin después de iniciar sesión
+        navigate('/admin')
       }
     } catch (err) {
       setError(err.message)
@@ -163,7 +168,7 @@ export const Login = () => {
           <Button
             type="submit"
             disabled={loading}
-            style={{ width: '100%', marginTop: '0.5rem' }}
+            style={{ width: '100%', marginTop: '0.5rem',border: '2px solid black', borderRadius: 'var(--radius)'  }}
           >
             {loading ? 'Cargando...' : (isSignUp ? 'Registrarse' : 'Iniciar Sesión')}
           </Button>
