@@ -141,7 +141,7 @@ export const AdminPanel = () => {
           </Button>
         </div>
 
-        
+
         {showForm && (
           <Card style={{ marginBottom: '2rem' }}>
             <h2 style={{
@@ -172,7 +172,7 @@ export const AdminPanel = () => {
                   <input
                     type="text"
                     value={formData.nombre}
-                    onChange={(e) => setFormData({...formData, nombre: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, nombre: e.target.value })}
                     style={{
                       width: '100%',
                       padding: '10px 12px',
@@ -199,7 +199,7 @@ export const AdminPanel = () => {
                   </label>
                   <select
                     value={formData.categoria}
-                    onChange={(e) => setFormData({...formData, categoria: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, categoria: e.target.value })}
                     style={{
                       width: '100%',
                       padding: '10px 12px',
@@ -232,7 +232,7 @@ export const AdminPanel = () => {
                 </label>
                 <textarea
                   value={formData.descripcion}
-                  onChange={(e) => setFormData({...formData, descripcion: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, descripcion: e.target.value })}
                   style={{
                     width: '100%',
                     padding: '10px 12px',
@@ -269,7 +269,7 @@ export const AdminPanel = () => {
                     type="number"
                     step="0.01"
                     value={formData.precio}
-                    onChange={(e) => setFormData({...formData, precio: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, precio: e.target.value })}
                     style={{
                       width: '100%',
                       padding: '10px 12px',
@@ -296,7 +296,7 @@ export const AdminPanel = () => {
                   </label>
                   <select
                     value={formData.estado}
-                    onChange={(e) => setFormData({...formData, estado: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, estado: e.target.value })}
                     style={{
                       width: '100%',
                       padding: '10px 12px',
@@ -329,7 +329,7 @@ export const AdminPanel = () => {
                 <input
                   type="url"
                   value={formData.imagen_url}
-                  onChange={(e) => setFormData({...formData, imagen_url: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, imagen_url: e.target.value })}
                   placeholder="https://ejemplo.com/imagen.jpg"
                   style={{
                     width: '100%',
@@ -345,14 +345,14 @@ export const AdminPanel = () => {
                 />
               </div>
 
-              <Button type="submit" disabled={loading} style={{ width: '100%', marginTop: '0.5rem' }}>
+              <Button type="submit" disabled={loading} style={{ width: '100%', marginTop: '0.5rem', border: '2px solid black', borderRadius: 'var(--radius)', boxShadow: '2px 2px 0px var(--slate)' }}>
                 {loading ? 'Guardando...' : 'Guardar Producto'}
               </Button>
             </form>
           </Card>
         )}
 
-        
+
         {loading && !showForm ? (
           <div style={{
             textAlign: 'center',
