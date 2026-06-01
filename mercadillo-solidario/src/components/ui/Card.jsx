@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 export const Card = ({ children, className = '', style = {} }) => {
   return (
     <div
@@ -18,6 +20,8 @@ export const Card = ({ children, className = '', style = {} }) => {
 }
 
 export const CardImage = ({ src, alt = 'Imagen' }) => {
+  const [imageError, setImageError] = useState(false)
+
   return (
     <div style={{
       width: '100%',
@@ -25,27 +29,34 @@ export const CardImage = ({ src, alt = 'Imagen' }) => {
       overflow: 'hidden',
       borderRadius: '4px',
       border: '2px solid var(--slate)',
-      background: 'var(--cream)',
+      background: imageError ? 'linear-gradient(135deg, #E8A020 0%, #F5F0E8 100%)' : 'var(--cream)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
     }}>
-      <img
-        src={src}
-        alt={alt}
-        style={{
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          transition: 'transform 0.3s ease',
-        }}
-        onError={e => {
-          e.target.style.display = 'none'
-          e.target.parentElement.style.display = 'flex'
-          e.target.parentElement.style.alignItems = 'center'
-          e.target.parentElement.style.justifyContent = 'center'
-          e.target.parentElement.innerHTML = '<span style="font-size:2.5rem">[ Imagen ]</span>'
-        }}
-        onMouseEnter={e => e.target.style.transform = 'scale(1.05)'}
-        onMouseLeave={e => e.target.style.transform = 'scale(1)'}
-      />
+      {!imageError ? (
+        <img
+          src={src}
+          alt={alt}
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            transition: 'transform 0.3s ease',
+          }}
+          onError={() => setImageError(true)}
+          onMouseEnter={e => e.target.style.transform = 'scale(1.05)'}
+          onMouseLeave={e => e.target.style.transform = 'scale(1)'}
+        />
+      ) : (
+        <div style={{
+          textAlign: 'center',
+          color: 'var(--slate)',
+          fontSize: '3rem',
+        }}>
+          📦
+        </div>
+      )}
     </div>
   )
 }
