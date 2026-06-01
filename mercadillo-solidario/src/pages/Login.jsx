@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 import { supabase } from '../lib/supabaseClient'
 import { Button } from '../components/ui/Button'
 import { Card, CardTitle, CardContent } from '../components/ui/Card'
@@ -38,14 +39,20 @@ export const Login = () => {
   }
 
   return (
-    <div style={{
-      minHeight: '100vh',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      backgroundColor: 'var(--cream)',
-      padding: '1.5rem',
-    }}>
+    <>
+      <Helmet>
+        <title>Iniciar Sesión - Mercadillo Solidario</title>
+        <meta name="description" content="Inicia sesión en Mercadillo Solidario o crea una nueva cuenta para empezar a comprar y vender productos usados." />
+        <meta name="robots" content="index, follow" />
+      </Helmet>
+      <div style={{
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'var(--cream)',
+        padding: '1.5rem',
+      }}>
       <Card style={{ width: '100%', maxWidth: '400px' }}>
         <h1 style={{
           fontSize: '1.75rem',
@@ -199,6 +206,7 @@ export const Login = () => {
           </button>
         </form>
       </Card>
-    </div>
+      </div>
+    </>
   )
 }

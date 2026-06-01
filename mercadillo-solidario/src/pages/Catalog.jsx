@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 import { supabase } from '../lib/supabaseClient'
 import { Card, CardImage, CardTitle, CardContent } from '../components/ui/Card'
 import { Button } from '../components/ui/Button'
@@ -52,6 +53,16 @@ export const Catalog = () => {
   }, [selectedCategory, searchTerm, productos])
 
   return (
+    <>
+      <Helmet>
+        <title>Catálogo - Mercadillo Solidario</title>
+        <meta name="description" content="Explora nuestro catálogo de productos usados. Compra artículos de segunda mano y contribuye a causas solidarias." />
+        <meta name="keywords" content="catálogo, productos usados, compra online, solidario" />
+        <meta property="og:title" content="Catálogo - Mercadillo Solidario" />
+        <meta property="og:description" content="Explora nuestro catálogo completo de productos de segunda mano con propósito solidario" />
+        <meta property="og:url" content={window.location.href} />
+        <meta property="og:type" content="website" />
+      </Helmet>
     <div style={{
       minHeight: '100vh',
       backgroundColor: 'var(--cream)',
@@ -192,5 +203,6 @@ export const Catalog = () => {
         )}
       </div>
     </div>
+    </>
   )
 }

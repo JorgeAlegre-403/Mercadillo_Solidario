@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 import { supabase } from '../lib/supabaseClient'
 import { Card, CardImage, CardTitle, CardContent } from '../components/ui/Card'
 import { Button } from '../components/ui/Button'
@@ -98,7 +99,18 @@ export const ProductDetail = () => {
   }
 
   return (
-    <div style={{
+    <>
+      <Helmet>
+        <title>{producto?.nombre} - Mercadillo Solidario</title>
+        <meta name="description" content={`${producto?.descripcion?.substring(0, 160)}... Compra este producto en Mercadillo Solidario`} />
+        <meta property="og:title" content={`${producto?.nombre} - Mercadillo Solidario`} />
+        <meta property="og:description" content={producto?.descripcion?.substring(0, 160)} />
+        {producto?.imagen_url && <meta property="og:image" content={producto.imagen_url} />}
+        <meta property="og:type" content="product" />
+        <meta property="product:price:amount" content={producto?.precio} />
+        <meta property="product:price:currency" content="EUR" />
+      </Helmet>
+      <div style={{
         minHeight: '100vh',
         backgroundColor: 'var(--cream)',
         padding: '2rem 1.5rem',
@@ -375,5 +387,6 @@ export const ProductDetail = () => {
           </div>
         </div>
       </div>
+    </>
   )
 }

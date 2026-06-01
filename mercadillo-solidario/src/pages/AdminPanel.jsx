@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { supabase } from '../lib/supabaseClient'
 import { Button } from '../components/ui/Button'
 import { Card, CardTitle, CardContent } from '../components/ui/Card'
@@ -97,11 +98,17 @@ export const AdminPanel = () => {
   }
 
   return (
-    <div style={{
-      minHeight: '100vh',
-      backgroundColor: 'var(--cream)',
-      padding: '2rem 1.5rem',
-    }}>
+    <>
+      <Helmet>
+        <title>Panel de Administración - Mercadillo Solidario</title>
+        <meta name="description" content="Panel de administración para gestionar productos y reservas en Mercadillo Solidario" />
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
+      <div style={{
+        minHeight: '100vh',
+        backgroundColor: 'var(--cream)',
+        padding: '2rem 1.5rem',
+      }}>
       <div style={{
         maxWidth: '1280px',
         margin: '0 auto',
@@ -445,6 +452,7 @@ export const AdminPanel = () => {
           </div>
         )}
       </div>
-    </div>
+      </div>
+    </>
   )
 }

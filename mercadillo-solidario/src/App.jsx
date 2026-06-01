@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { HelmetProvider } from 'react-helmet-async'
 import { AuthProvider, useAuth } from './context/AuthContext'
 import { Login } from './pages/Login'
 import { Catalog } from './pages/Catalog'
@@ -47,11 +48,13 @@ function AppContent() {
 
 function App() {
   return (
-    <BrowserRouter>
-      <AuthProvider>
-        <AppContent />
-      </AuthProvider>
-    </BrowserRouter>
+    <HelmetProvider>
+      <BrowserRouter>
+        <AuthProvider>
+          <AppContent />
+        </AuthProvider>
+      </BrowserRouter>
+    </HelmetProvider>
   )
 }
 
